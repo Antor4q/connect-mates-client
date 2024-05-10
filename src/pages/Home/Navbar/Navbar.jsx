@@ -5,6 +5,7 @@ import { FiLogOut } from "react-icons/fi";
 
 
 const Navbar = () => {
+
     const {user,logOut} = useContext(ConnectAuth)
     const navigate = useNavigate()
     const nav = <>

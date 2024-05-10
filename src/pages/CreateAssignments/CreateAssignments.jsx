@@ -1,10 +1,14 @@
 
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
+import { ConnectAuth } from "../../routes/AuthContext";
+import axios from "axios";
 
 const CreateAssignments = () => {
     const [level,setLevel] = useState("")
+    const {user} = useContext(ConnectAuth)
+    console.log(import.meta.env.VITE_API_URL)
     const handleLevel = e => {
         setLevel(e.target.value)
     }
@@ -17,7 +21,15 @@ const CreateAssignments = () => {
         const dueDate = form.date.value;
         const difficultyLevel =level
         const description = form.description.value;
-        console.log(title, image, marks, dueDate, difficultyLevel, description)
+        const userEmail = user.email;
+        const assignment = {
+            title, image, marks, dueDate, difficultyLevel, description, userEmail
+        }
+        axios.post(`${import.meta.env.VITE_API_URL}/createAssignment`,assignment)
+        .then(result => {
+            alert("Assignment Created success")
+            console.log(result?.data)
+        })
     }
 
     return (
@@ -66,7 +78,7 @@ const CreateAssignments = () => {
                     </div>
 
                     <div className="flex justify-end mt-6">
-                        <input type="submit" value="Create Now" className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" />
+                        <input type="submit" value="Create Now" className="px-8 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" />
                     </div>
                 </form>
             </section>
