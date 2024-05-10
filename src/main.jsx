@@ -15,6 +15,7 @@ import AuthContext from './routes/AuthContext';
 import CreateAssignments from './pages/CreateAssignments/CreateAssignments';
 import PendingAssignments from './pages/PendingAssignments/PendingAssignments';
 import AttempedAssignments from './pages/AttempedAssignments/AttempedAssignments';
+import AssignmentDetails from './pages/AssignmentDetails/AssignmentDetails';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +48,11 @@ const router = createBrowserRouter([
      {
       path: "/attempted",
       element: <AttempedAssignments></AttempedAssignments>
+     },
+     {
+      path: "/assignmentDetails/:id",
+      element: <AssignmentDetails></AssignmentDetails>,
+      loader: ()=> fetch(`${import.meta.env.VITE_API_URL}/createAssignment`)
      }
     ]
   },
