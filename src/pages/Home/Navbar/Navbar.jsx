@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ConnectAuth } from "../../../routes/AuthContext";
+import { FiLogOut } from "react-icons/fi";
 
 
 const Navbar = () => {
@@ -50,7 +51,7 @@ const Navbar = () => {
                }
             </ul>
         </div>
-            {user ? <div className="dropdown">
+            {user ? <div className="dropdown dropdown-end">
                 <div className="avatar" tabIndex={0} role="button">
                 <div className="w-10 rounded-full ">
                     <img src={user.photoURL} />
@@ -58,7 +59,7 @@ const Navbar = () => {
                 </div>
                 <ul tabIndex={0} className="dropdown-content z-[1] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><Link to="/attempted">Attempted Assignments</Link></li>
-                    <li><button onClick={handleLogOut}>Logout</button></li>
+                    <li><button onClick={handleLogOut}><FiLogOut />Logout</button></li>
                 </ul>
             </div>  :<Link to="/login" className="btn bg-red-400">Log In</Link>}
         </div>
