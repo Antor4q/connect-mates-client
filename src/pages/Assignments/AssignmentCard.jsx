@@ -42,7 +42,9 @@ const AssignmentCard = ({assignment,setAssignments,assignments}) => {
          <div className="tooltip" data-tip="View Details">
             <Link to={`/assignmentDetails/${_id}`}><BsEye /></Link>
             </div>
-        <div className="tooltip" data-tip="Update"> <button><MdSystemUpdateAlt /></button></div>
+        <div className="tooltip" data-tip="Update"> 
+        <Link to={`/updateAssignment/${_id}`}><MdSystemUpdateAlt /></Link>
+        </div>
          <div className="tooltip" data-tip="Delete">
             <button onClick={()=>handleDelete(_id)}><RiDeleteBin6Line /></button>
             </div>
