@@ -22,8 +22,8 @@ const AssignmentDetails = () => {
         const note = form.note.value;
         const status = "Pending"
         const assTitle = title
-        const email = userEmail
-        const name = userName
+        const email = user?.email
+        const name = user?.displayName
         const mark = marks
         const attemptedAss = {
             fileURL,note, status, assTitle, email, name, mark
