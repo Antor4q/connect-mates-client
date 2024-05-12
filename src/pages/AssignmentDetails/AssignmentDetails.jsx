@@ -14,7 +14,7 @@ const AssignmentDetails = () => {
     const navigate = useNavigate()
     const handleAttempted = e => {
         if(user.email === userEmail){
-            alert("You Don't have access to attempted this assignment")
+           return alert("You Don't have access to attempted this assignment")
         }
         e.preventDefault()
         const form = e.target;

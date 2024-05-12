@@ -1,8 +1,17 @@
 import axios from "axios";
 import PropTypes from "prop-types"
+import { useContext } from "react";
+import { ConnectAuth } from "../../routes/AuthContext";
+
+
 const PendingModal = ({ass}) => {
+    const {user} = useContext(ConnectAuth)
     const handleSubmit = (e) => {
         e.preventDefault()
+        if(user.email === ass.email){
+            return alert("You Don't have access marked on your submit assignment")
+        }
+       
         const form = e.target;
         const giveMark = form.mark.value;
         const feedback = form.feedback.value;
