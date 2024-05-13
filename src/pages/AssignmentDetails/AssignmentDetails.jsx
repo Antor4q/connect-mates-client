@@ -18,7 +18,7 @@ const AssignmentDetails = () => {
 
     const handleAttempted = e => {
         if(user.email === userEmail){
-           return alert("You Don't have access to attempted this assignment")
+           return alert("You Don't have access to attempted on your assignment")
         }
         e.preventDefault()
         const form = e.target;
@@ -65,14 +65,14 @@ const AssignmentDetails = () => {
                             </div>
                            
                              
-                             <button onClick={()=>document.getElementById('my_modal_3').showModal()} className="px-8 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Take Assignment</button>
+                             <button onClick={()=>document.getElementById('my_modal_3').showModal()} className="px-8 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Take Assignment</button>
                              <dialog id="my_modal_3" className="modal ">
-                                <div className="modal-box bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                                <div className="modal-box bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9]">
                                     <form method="dialog">
                                     {/* if there is a button in form, it will close the modal */}
                                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                     </form>
-                                    <h2 className="text-xl mt-6 text-black font-semibold">Take This Assignment</h2>
+                                    <h2 className="text-xl mt-6 text-white font-semibold">Take This Assignment</h2>
                                     <form onSubmit={handleAttempted}>
                                     <div className="my-3">
                                         
@@ -86,7 +86,7 @@ const AssignmentDetails = () => {
                                         
                                        
                                     </div>
-                                    <input type="submit" className="px-8 mt-3 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-300 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" value="Submit" />
+                                    <input type="submit" className="px-8 mt-3 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" value="Submit" />
                                     </form>
                                 </div>
                                 </dialog>

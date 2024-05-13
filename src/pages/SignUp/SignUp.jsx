@@ -55,12 +55,11 @@ const SignUp = () => {
     return (
         <div className="lg:h-screen lg:max-w-[1440px] mx-auto">
          
-        <section className="bg-white dark:bg-gray-900">
-            <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
-               <div>
-               <form onSubmit={handleSingUp} className="w-full max-w-md">
-                    <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt=""/>
-
+        <section className=" dark:bg-gray-900">
+            <div className="container  flex items-center justify-center min-h-screen px-6 mx-auto">
+               <div >
+               <form onSubmit={handleSingUp} className="w-full max-w-lg">
+                   
                     <h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl dark:text-white">sign Up</h1>
 
                     <div className="relative flex items-center mt-8">

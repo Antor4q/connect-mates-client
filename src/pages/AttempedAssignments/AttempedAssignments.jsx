@@ -20,13 +20,13 @@ const AttempedAssignments = () => {
     return <span className="h-screen text-center text-4xl">Loading</span>
   }
     return (
-        <div className="lg:h-screen lg:max-w-[1440px] mx-auto">
-            <h2 className="text-3xl text-center my-10">This is AttemptedAssignments</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-3  ">
+        <div className="lg:h-screen px-6 lg:px-0 lg:max-w-[1440px] mx-auto">
+            <h2 className="lg:text-3xl text-xl text-center my-10">The Attempted Assignment`s</h2>
+            <div className="grid mb-10 lg:mb-0 grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-3  ">
             {
                 assigns.map(assign => <>
                 
-                <div className="card w-96 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-primary-content">
+                <div className="card lg:w-96 bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] text-primary-content">
                 <div className="card-body flex items-center">
                      <div className={assign.status === "Completed" ? "bg-gradient-to-r from-green-500 via-green-300 to-green-400 h-[100px] w-1/3  flex items-center justify-center rounded-full" : "bg-white h-[100px] w-1/3  flex items-center justify-center rounded-full"}>
                        <span className="text-center font-bold">{assign.mark}/{assign.giveMark ? assign.giveMark :"00"}</span>

@@ -28,7 +28,7 @@ const AssignmentCard = ({assignment,setAssignments,assignments}) => {
       }
     }
     return (
-        <div className="max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="max-w-xs mx-auto mb-5 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
     <div className="px-4 py-2 h-[100px]">
         <h1 className="text-xl font-bold text-gray-800 uppercase dark:text-white">{title}</h1>
         <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{difficultyLevel}</p>
@@ -36,7 +36,7 @@ const AssignmentCard = ({assignment,setAssignments,assignments}) => {
 
     <img className="object-cover w-[320px] h-48 mt-2" src={image} alt="NIKE AIR"/>
 
-    <div className="flex items-center text-white justify-between px-4 py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+    <div className="flex items-center text-white justify-between px-4 py-2 bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9]">
         <h1 className="text-lg font-bold ">{marks} Mark</h1>
         <div className="flex gap-8 items-center justify-center">
          <div className="tooltip" data-tip="View Details">

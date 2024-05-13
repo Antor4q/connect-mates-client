@@ -40,7 +40,7 @@ const UpdateAssignment = () => {
     }
    
     return (
-        <div className="lg:h-screen lg:max-w-[1440px] mx-auto">
+        <div className="lg:h-screen px-6 py-10 lg:py-0 lg:px-0 lg:max-w-[1440px] mx-auto">
             
             <section className="max-w-4xl lg:my-20 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
                 <Link to="/assignments" className="text-2xl rounded-full text-center w-8 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"><IoArrowBackCircleOutline  /></Link>
@@ -86,7 +86,7 @@ const UpdateAssignment = () => {
                     </div>
 
                     <div className="flex justify-end mt-6">
-                        <input type="submit" value="Update" className="px-8 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" />
+                        <input type="submit" value="Update" className="px-8 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" />
                     </div>
                 </form>
             </section>
