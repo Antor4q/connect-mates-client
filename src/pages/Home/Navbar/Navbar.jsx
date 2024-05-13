@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ConnectAuth } from "../../../routes/AuthContext";
 import { FiLogOut } from "react-icons/fi";
-
+import icon from "../../../assets/logo.png"
 
 const Navbar = () => {
     const [theme,setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light")
@@ -42,7 +42,7 @@ const Navbar = () => {
         .catch(()=>{})
     }
     return (
-        <div className="navbar text-white lg:max-w-[1440px] mx-auto bg-opacity-50 hover:shadow-lg">
+        <div className="navbar text-white lg:max-w-[1240px] mx-auto bg-opacity-50 hover:shadow-lg">
         <div className="navbar-start">
             <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -54,7 +54,7 @@ const Navbar = () => {
                }
             </ul>
             </div>
-            <Link to="/" className="btn btn-ghost text-xl">ConnectMates</Link>
+            <Link to="/" className="text-xl h-[60px] w-[280px] flex items-center text-center"> <img src={icon} alt="" /></Link>
            
         </div>
         

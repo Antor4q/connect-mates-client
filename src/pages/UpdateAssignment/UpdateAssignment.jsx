@@ -1,10 +1,12 @@
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import useSecure from "../../hooks/useSecure";
 
 const UpdateAssignment = () => {
     const assignId = useParams()
+    const axiosSecure = useSecure()
     const [assignment,setAssignment] = useState([])
     const {title,marks,difficultyLevel : levelDe,image,dueDate,description} = assignment;
     const [level,setLevel] = useState("")
@@ -13,11 +15,11 @@ const UpdateAssignment = () => {
         setLevel(e.target.value)
     }
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_URL}/updateAssignment/${assignId.id}`)
+        axiosSecure.get(`/updateAssignment/${assignId.id}`)
         .then(result => {
             setAssignment(result.data)
         })
-    },[assignId.id])
+    },[assignId.id,axiosSecure])
 
     const handleUpdate = e => {
         e.preventDefault()
@@ -29,7 +31,7 @@ const UpdateAssignment = () => {
         const difficultyLevel =level ? level : levelDe;
         const description = form.description.value;
         const assignment = {title, image, marks, dueDate,difficultyLevel,  description}
-        axios.patch(`${import.meta.env.VITE_API_URL}/updateAssignment/${assignId.id}`,assignment)
+        axiosSecure.patch(`/updateAssignment/${assignId.id}`,assignment)
         .then(result => {
             console.log(result.data)
             alert("You Have successfully Update")

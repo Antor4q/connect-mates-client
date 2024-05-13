@@ -2,6 +2,7 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged,
 import PropTypes from "prop-types"
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
+import axios from "axios";
 
 export const ConnectAuth = createContext()
 const AuthContext = ({children}) => {
@@ -38,8 +39,22 @@ const AuthContext = ({children}) => {
 
     useEffect(()=> {
        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+          const userEmail = currentUser?.email
+          const signInEmail = {email : userEmail}
             setUser(currentUser)
             setLoading(false)
+            if(currentUser){
+                axios.post(`${import.meta.env.VITE_API_URL}/jwt`,signInEmail,{withCredentials: true})
+                .then(result => {
+                    console.log(result.data)
+                })
+            }
+            else{
+                axios.post(`${import.meta.env.VITE_API_URL}/signOut`,signInEmail,{withCredentials: true})
+                .then(result => {
+                    console.log(result.data)
+                })
+            }
         })
         return ()=> unsubscribe()
     },[])

@@ -27,7 +27,7 @@ const Features = () => {
                         <span className="block text-xs font-medium tracking-widest uppercase text-violet-400">{assign.difficultyLevel}</span>
                         <h2 className="text-xl font-semibold tracking-wide">{assign.title}</h2>
                     </div>
-                    <p className="">{assign.description.slice(0,100)}</p>
+                    <p className="">{assign?.description?.slice(0,100)}</p>
                     <div className="text-end">
                     <Link to={`/assignmentDetails/${assign._id}`} className="text-white  px-4 py-1  rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">View Details</Link>
                     </div>

@@ -1,20 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import { ConnectAuth } from "../../routes/AuthContext";
-import axios from "axios";
+// import axios from "axios";
+import useSecure from "../../hooks/useSecure";
 
 
 const AttempedAssignments = () => {
     const {user} = useContext(ConnectAuth)
     const [assigns,setAssigns] = useState([])
-   
+   const [loading,setLoading] = useState(true)
+   const axiosSecure = useSecure()
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_URL}/attempted/${user?.email}`)
+        axiosSecure.get(`/attempted/${user?.email}`)
         .then(result => {
           setAssigns(result.data)
-           
+           setLoading(false)
         })
-    },[user?.email])
-  
+    },[user?.email,axiosSecure])
+  if(loading){
+    return <span className="h-screen text-center text-4xl">Loading</span>
+  }
     return (
         <div className="lg:h-screen lg:max-w-[1440px] mx-auto">
             <h2 className="text-3xl text-center my-10">This is AttemptedAssignments</h2>

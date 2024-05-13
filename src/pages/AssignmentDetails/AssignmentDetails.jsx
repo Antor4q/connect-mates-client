@@ -2,7 +2,8 @@
 import { useContext } from "react";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { ConnectAuth } from "../../routes/AuthContext";
-import axios from "axios";
+
+import useSecure from "../../hooks/useSecure";
 
 
 const AssignmentDetails = () => {
@@ -11,7 +12,10 @@ const AssignmentDetails = () => {
     const assignment = assignments.find(ass => ass._id === assignId.id)
     const {title, image, marks, dueDate, difficultyLevel, description,userImage,userName,userEmail} = assignment;
     const {user} = useContext(ConnectAuth)
+    const axiosSecure = useSecure()
     const navigate = useNavigate()
+    
+
     const handleAttempted = e => {
         if(user.email === userEmail){
            return alert("You Don't have access to attempted this assignment")
@@ -28,7 +32,7 @@ const AssignmentDetails = () => {
         const attemptedAss = {
             fileURL,note, status, assTitle, email, name, mark
         }
-        axios.post(`${import.meta.env.VITE_API_URL}/attempted`,attemptedAss)
+       axiosSecure.post(`/attempted`,attemptedAss)
         .then(result => {
             console.log(result.data)
             alert("You have Successfully attempted this assignment")

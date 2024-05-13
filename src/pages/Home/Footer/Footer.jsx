@@ -1,4 +1,5 @@
-
+import { Link } from "react-router-dom";
+import logo from "../../../assets/logo.png"
 
 const Footer = () => {
     return (
@@ -41,9 +42,7 @@ const Footer = () => {
           <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-700"/>
           
           <div className="flex items-center justify-between">
-              <a href="#">
-                  <img className="w-auto h-7" src="https://merakiui.com/images/full-logo.svg" alt=""/>
-              </a>
+               <Link to="/" className="text-xl h-[60px] w-[280px] flex items-center text-center"><img src={logo} alt="" /></Link>
               <div>
               <p className="mt-4 text-sm text-black sm:mt-0 dark:text-gray-300">© Copyright ConnectMates 2024. All Rights Reserved.</p>
               </div>

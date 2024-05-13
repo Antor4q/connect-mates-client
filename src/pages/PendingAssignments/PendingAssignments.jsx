@@ -1,18 +1,27 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+import {  useEffect, useState } from "react";
 import PendingModal from "./PendingModal";
+
+import useSecure from "../../hooks/useSecure";
 
 
 const PendingAssignments = () => {
     const [attemptedAssign,setAttemptedAssign] = useState([])
+    const [loading,setLoading] = useState(true)
+   
+    const axiosSecure = useSecure()
+   
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_URL}/pending`)
+        axiosSecure.get(`/pending`)
         .then(result => {
             
             setAttemptedAssign(result.data)
+            setLoading(false)
         })
-    },[])
-
+    },[axiosSecure])
+   if(loading){
+    return <span className="lg:max-w-[1240px] mx-auto my-5 text-6xl font-bold">Loading....</span>
+   }
    
     return (
         <div className="lg:h-screen lg:max-w-[1440px] mx-auto">

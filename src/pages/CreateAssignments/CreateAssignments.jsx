@@ -3,12 +3,13 @@
 import { useContext, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { ConnectAuth } from "../../routes/AuthContext";
-import axios from "axios";
+// import axios from "axios";
+import useSecure from "../../hooks/useSecure";
 
 const CreateAssignments = () => {
     const [level,setLevel] = useState("")
     const {user} = useContext(ConnectAuth)
-    console.log(import.meta.env.VITE_API_URL)
+    const axiosSecure = useSecure()
     const handleLevel = e => {
         setLevel(e.target.value)
     }
@@ -25,7 +26,7 @@ const CreateAssignments = () => {
         const assignment = {
             title, image, marks, dueDate, difficultyLevel, description, userEmail, userImage : user.photoURL, userName : user.displayName
         }
-        axios.post(`${import.meta.env.VITE_API_URL}/createAssignment`,assignment)
+        axiosSecure.post(`/createAssignment`,assignment)
         .then(result => {
             alert("Assignment Created success")
             console.log(result?.data)
