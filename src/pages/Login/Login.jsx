@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ConnectAuth } from "../../routes/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
 import { CiLock, CiUnlock } from "react-icons/ci";
@@ -13,6 +13,7 @@ const Login = () => {
     const {signIn,google} = useContext(ConnectAuth)
     const [showPassword,setShowPassword] = useState(false)
     const navigate = useNavigate()
+    const location = useLocation()
     const handleLogin = e => {
         e.preventDefault()
         const form = e.target;
@@ -22,16 +23,19 @@ const Login = () => {
         signIn(email, password)
         .then(result => {
           
+           if(result?.user){
             form.reset()
             toast.success("You have successfully Sign In")
-            console.log(result.user)
-          
+            setTimeout(()=>{
+                navigate(location?.state ? location?.state : "/")
+            },800)
+           }
         })
-        .then(error => {
+        .catch(error => {
          
             if(error){
-                alert("Invalid email and password")
-                console.log(error.message)
+                toast.error("Invalid email and password")
+               
             }
          
         })
@@ -39,19 +43,25 @@ const Login = () => {
     const handleGoogle =() => {
         google()
         .then((result)=>{
-            console.log(result.user)
-            navigate("/")
+            if(result?.user){
+                
+                toast.success("You have successfully Sign In")
+                setTimeout(()=>{
+                    navigate(location?.state ? location?.state : "/")
+                },800)
+               }
+            
         })
         .catch(()=>{})
     }
     return (
-        <div className="lg:h-screen lg:max-w-[1440px] mx-auto">
+        <div className="lg:hero-content lg:max-w-[1440px] mx-auto">
          
             <section className="bg-white dark:bg-gray-900">
                 <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
                     <div>
                     <form onSubmit={handleLogin} className="w-full max-w-md">
-                        <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt=""/>
+                       
 
                         <h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl dark:text-white">sign In</h1>
 
@@ -73,8 +83,8 @@ const Login = () => {
 
                         <input type={showPassword ? "text": "password"} className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" required name="password" placeholder="Password"/>
                     </div>
-                    <input type="submit" value="Sign Up" className="w-full mt-6 px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" />
-                    <Toaster/>
+                    <input type="submit" value="Sign Up" className="w-full mt-6 px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" />
+                    
                        
                     </form>
                     <div className="mt-6">
@@ -88,6 +98,7 @@ const Login = () => {
 
                            <span className="mx-2">Sign in with Google</span>
                        </button>
+                       <Toaster/>
 
                        <div className="mt-6 text-center ">
                            <span>Don’t have an account yet?</span>

@@ -5,9 +5,7 @@ import { useEffect, useState } from "react";
 import { IoCallOutline } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
-// import { FaFacebookF } from "react-icons/fa";
-// import { SlSocialLinkedin } from "react-icons/sl";
-// import { TiSocialTwitter } from "react-icons/ti";
+
 
 
 const Root = () => {
@@ -30,8 +28,10 @@ const Root = () => {
         <div >
             <div className="bg-[#003C43] lg:py-4 px-4 lg:px-0">
              <div className="lg:max-w-[1320px] flex justify-between mx-auto  py-1">
-              <div className="text-white flex  hidden lg:inline-block md:block  gap-3 lg:gap-5 items-center">
-                    <div className="flex items-center gap-1">
+              <div className="text-white flex  hidden lg:inline-block md:block-inline-block  gap-3 lg:gap-5 items-center">
+                    
+                  <div className="flex gap-5 flex-row">
+                  <div className="flex items-center gap-1">
                     <span><IoCallOutline /></span>
                     <p> +0912324364</p>
                     </div>
@@ -39,12 +39,7 @@ const Root = () => {
                     <span><MdOutlineEmail /></span>
                     <p>connectmates@gmail.com</p>
                     </div>
-                    {/* <div className="flex items-center gap-3 text-lg">
-                        <span><FaFacebookF /></span>
-                        <span><SlSocialLinkedin /></span>
-                        <span className="text-lg"><TiSocialTwitter /></span>
-                    </div> */}
-                
+                  </div>
              </div>
     
                <div className="flex items-center pl-5 lg:justify-between lg:pl-0  gap-5 ">
@@ -83,7 +78,7 @@ const Root = () => {
             </div>
            
             <Outlet></Outlet>
-            <div className="bg-[#003C43]">
+            <div className="bg-[#003C43] lg:py-20 lg:h-[500px]">
             <Footer></Footer>
             </div>
         </div>

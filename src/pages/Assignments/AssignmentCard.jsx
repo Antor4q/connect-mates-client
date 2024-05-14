@@ -6,6 +6,8 @@ import { MdSystemUpdateAlt } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { ConnectAuth } from "../../routes/AuthContext";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import Swal from "sweetalert2";
 // import toast from "react-hot-toast";
 
 const AssignmentCard = ({assignment,setAssignments,assignments}) => {
@@ -13,18 +15,32 @@ const AssignmentCard = ({assignment,setAssignments,assignments}) => {
     const {user} = useContext(ConnectAuth)
     const handleDelete = id => {
       if(userEmail === user.email){
-        const procesed = confirm("Are you sure you want delete")
-        if(procesed){
-            axios.delete(`${import.meta.env.VITE_API_URL}/createAssignment/${id}`)
-        .then(result => {
-         console.log(result)
-         alert("You have delete this assignment")
-         const remaining = assignments.filter(ass => ass._id !== id)
-         setAssignments(remaining)
-        })
-        }
+        // const procesed = confirm("Are you sure you want delete")
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true
+          })
+          .then(result=>{
+            if(result.isConfirmed){
+                axios.delete(`${import.meta.env.VITE_API_URL}/createAssignment/${id}`)
+                .then(result => {
+               if(result){
+                
+                 toast.success("You have delete this assignment")
+                 const remaining = assignments.filter(ass => ass._id !== id)
+                 setAssignments(remaining)
+               }
+             })
+            }
+          })
+       
       }else{
-        alert("You Don't have an access")
+        toast.error("You Don't have an access delete this assignment")
       }
     }
     return (
@@ -47,6 +63,7 @@ const AssignmentCard = ({assignment,setAssignments,assignments}) => {
         </div>
          <div className="tooltip" data-tip="Delete">
             <button onClick={()=>handleDelete(_id)}><RiDeleteBin6Line /></button>
+            <Toaster/>
             </div>
         </div>
     </div>

@@ -24,7 +24,7 @@ const Navbar = () => {
     const handleLogOut = ()=> {
         logOut()
         .then(()=>{
-            navigate("/login")
+            navigate("/")
         })
         .catch(()=>{})
     }

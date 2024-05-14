@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useSecure from "../../hooks/useSecure";
+import toast, { Toaster } from "react-hot-toast";
 
 const UpdateAssignment = () => {
     const assignId = useParams()
@@ -33,9 +34,11 @@ const UpdateAssignment = () => {
         const assignment = {title, image, marks, dueDate,difficultyLevel,  description}
         axiosSecure.patch(`/updateAssignment/${assignId.id}`,assignment)
         .then(result => {
-            console.log(result.data)
-            alert("You Have successfully Update")
+          if(result){
+            
+           toast.success("You Have successfully Update")
             navigate("/assignments")
+          }
         })
     }
    
@@ -87,6 +90,7 @@ const UpdateAssignment = () => {
 
                     <div className="flex justify-end mt-6">
                         <input type="submit" value="Update" className="px-8 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" />
+                        <Toaster/>
                     </div>
                 </form>
             </section>

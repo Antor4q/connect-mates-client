@@ -30,6 +30,7 @@ const SignUp = () => {
         signUp(email, password)
         .then(result => {
             
+           if(result?.user){
             form.reset()
             profileUpdate(name, photo)
             .then(()=>{})
@@ -37,10 +38,13 @@ const SignUp = () => {
             .then(()=> {})
          
             toast.success("You have successfully Sign Up")
-            console.log(result)
+            
+           }
         })
         .catch(error => {
-            console.log(error)
+            if(error){
+                toast.error("Oops something went's wrong")
+            }
         })
     }
     const handleGoogle =() => {
@@ -53,7 +57,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className="lg:h-screen lg:max-w-[1440px] mx-auto">
+        <div className="h-[calc(100vh - 517px)] lg:max-w-[1440px] mx-auto">
          
         <section className=" dark:bg-gray-900">
             <div className="container  flex items-center justify-center min-h-screen px-6 mx-auto">
@@ -110,7 +114,7 @@ const SignUp = () => {
                     </div>
                    }
 
-                    <input type="submit" value="Sign Up" className="w-full mt-6 px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" />
+                    <input type="submit" value="Sign Up" className="w-full mt-6 px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" />
                     <Toaster/>
                     
                 </form>

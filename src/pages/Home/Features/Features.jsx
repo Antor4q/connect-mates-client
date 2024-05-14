@@ -1,23 +1,39 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { CirclesWithBar } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 
 
 const Features = () => {
     const [assignments,setAssignments] = useState([])
-   
+   const [loading,setLoading] = useState(true)
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_API_URL}/createAssignment`)
         .then(result => {
            
             setAssignments(result.data)
-           
+           setLoading(false)
         })
     },[])
-    console.log(assignments)
+    if(loading){
+        return <span className="h-[800px] lg:max-w-[1320px] mx-auto flex justify-center items-center">
+        <CirclesWithBar
+        height="100"
+        width="100"
+        color="#117c8a"
+        outerCircleColor="#117c8a"
+        innerCircleColor="#117c8a"
+        barColor="#117c8a"
+        ariaLabel="circles-with-bar-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        /></span>
+    }
+   
     return (
         <div className="lg:my-16 my-10 lg:max-w-[1320px] mx-auto">
-            <h2 className="text-3xl text-center mb-5">Late`st Assignments</h2>
+            <h2 className="text-3xl lg:font-bold font-medium text-center mb-5">Lates`t Assignments</h2>
            <div className="grid px-6 lg:px-0  grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8">
               {
                 assignments.slice(0,6).map(assign => <>

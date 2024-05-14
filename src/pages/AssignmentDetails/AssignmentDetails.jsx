@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { ConnectAuth } from "../../routes/AuthContext";
 
 import useSecure from "../../hooks/useSecure";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const AssignmentDetails = () => {
@@ -17,10 +18,11 @@ const AssignmentDetails = () => {
     
 
     const handleAttempted = e => {
-        if(user.email === userEmail){
-           return alert("You Don't have access to attempted on your assignment")
-        }
         e.preventDefault()
+        if(user.email === userEmail){
+           return toast.error("You Don't have access to attempted on your assignment")
+        }
+        
         const form = e.target;
         const fileURL= form.file.value;
         const note = form.note.value;
@@ -34,15 +36,20 @@ const AssignmentDetails = () => {
         }
        axiosSecure.post(`/attempted`,attemptedAss)
         .then(result => {
-            console.log(result.data)
-            alert("You have Successfully attempted this assignment")
-            navigate("/assignments")
+           if(result){
+            toast.success("You have Successfully attempted this assignment")
+            setTimeout(()=>{
+                navigate("/assignments")
+            },200)
+           }
+           
+          
         })
         
     }
     
     return (
-        <div className="lg:h-screen lg:max-w-[1440px] mx-auto">
+        <div className="lg:h-screen px-6 lg:px-0 py-10 lg:py-0 lg:max-w-[1440px] mx-auto">
             <div className="max-w-2xl lg:my-20 overflow-hidden mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <img className="object-cover w-full h-64" src={image} alt="Article"/>
 
@@ -87,6 +94,7 @@ const AssignmentDetails = () => {
                                        
                                     </div>
                                     <input type="submit" className="px-8 mt-3 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" value="Submit" />
+                                    <Toaster/>
                                     </form>
                                 </div>
                                 </dialog>

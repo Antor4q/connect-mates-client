@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ConnectAuth } from "../../routes/AuthContext";
 // import axios from "axios";
 import useSecure from "../../hooks/useSecure";
+import toast, { Toaster } from "react-hot-toast";
 
 const CreateAssignments = () => {
     const [level,setLevel] = useState("")
@@ -28,8 +29,9 @@ const CreateAssignments = () => {
         }
         axiosSecure.post(`/createAssignment`,assignment)
         .then(result => {
-            alert("Assignment Created success")
-            console.log(result?.data)
+           if(result){
+            toast.success("Assignment successfully created")
+           }
         })
     }
 
@@ -80,6 +82,7 @@ const CreateAssignments = () => {
 
                     <div className="flex justify-end mt-6">
                         <input type="submit" value="Create Now" className="px-8 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" />
+                        <Toaster/>
                     </div>
                 </form>
             </section>

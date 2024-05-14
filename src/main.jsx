@@ -17,10 +17,13 @@ import PendingAssignments from './pages/PendingAssignments/PendingAssignments';
 import AttempedAssignments from './pages/AttempedAssignments/AttempedAssignments';
 import AssignmentDetails from './pages/AssignmentDetails/AssignmentDetails';
 import UpdateAssignment from './pages/UpdateAssignment/UpdateAssignment';
+import Error from './pages/Error/Error';
+import PrivateRout from './routes/PrivateRout';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -40,24 +43,24 @@ const router = createBrowserRouter([
       },
       {
         path: "/create",
-        element: <CreateAssignments></CreateAssignments>
+        element: <PrivateRout><CreateAssignments></CreateAssignments></PrivateRout>
       },
      {
       path: "/pending",
-      element: <PendingAssignments></PendingAssignments>
+      element: <PrivateRout><PendingAssignments></PendingAssignments></PrivateRout>
      },
      {
       path: "/attempted",
-      element: <AttempedAssignments></AttempedAssignments>
+      element: <PrivateRout><AttempedAssignments></AttempedAssignments></PrivateRout>
      },
      {
       path: "/assignmentDetails/:id",
-      element: <AssignmentDetails></AssignmentDetails>,
+      element: <PrivateRout><AssignmentDetails></AssignmentDetails></PrivateRout>,
       loader: ()=> fetch(`${import.meta.env.VITE_API_URL}/createAssignment`)
      },
      {
       path: "/updateAssignment/:id",
-      element: <UpdateAssignment></UpdateAssignment>
+      element: <PrivateRout><UpdateAssignment></UpdateAssignment></PrivateRout>
      }
     ]
   },
