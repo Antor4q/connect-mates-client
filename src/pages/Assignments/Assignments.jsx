@@ -6,6 +6,7 @@ import { CirclesWithBar } from "react-loader-spinner";
 
 const Assignments = () => {
     const [assignments,setAssignments] = useState([])
+    const [ass,setAss] = useState([...assignments])
     
    const [loading,setLoading] = useState(true)
     useEffect(()=>{
@@ -13,6 +14,7 @@ const Assignments = () => {
         .then(result => {
            
             setAssignments(result.data)
+            setAss(result.data)
             setLoading(false)
         })
     },[])
@@ -34,21 +36,23 @@ const Assignments = () => {
     const handleSort = level => {
         if(level === "Easy"){
             
-            const remaining = [...assignments].filter(ass=> ass?.difficultyLevel === "Easy")
-          
+            const remaining = [...ass].filter(ass=> ass?.difficultyLevel === "Easy")
+           
            setAssignments(remaining)
             setLoading(false)
         }
         if(level === "Medium"){
            
-            const remaining = [...assignments].filter(ass=> ass?.difficultyLevel === "Medium")
+            const remaining = [...ass].filter(ass=> ass?.difficultyLevel === "Medium")
+          
            setAssignments(remaining)
           
            setLoading(false)
         }
         if(level === "Heard"){
             
-            const remaining = [...assignments].filter(ass=> ass?.difficultyLevel === "Heard")
+            const remaining = [...ass].filter(ass=> ass?.difficultyLevel === "Heard")
+           
           setAssignments(remaining)
           
            setLoading(false)

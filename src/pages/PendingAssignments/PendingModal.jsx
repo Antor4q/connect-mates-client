@@ -36,7 +36,8 @@ const PendingModal = ({ass}) => {
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <h2 className="text-xl my-3 text-white font-semibold">Give a mark</h2>
-            <p className="my-2">File URL: <span className="cursor-pointer">{ass.fileURL}</span></p>
+            
+            <p  className="my-2 tooltip" data-tip="Click for preview">File URL: <a href={ass.fileURL} target="_blank">{ass.fileURL}</a></p>
             <p>Note: {ass.note}</p>
             <form onSubmit={handleSubmit}>
             <div className="my-3">

@@ -24,12 +24,12 @@ const AttempedAssignments = () => {
             {
                 assigns.map(assign => <>
                 
-                <div className="card lg:w-96 bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] text-primary-content">
+                <div className="card lg:w-96 bg-gradient-to-r from-[#8cb3b9] via-[#95b8bc] to-[#a3c9ce] text-primary-content">
                 <div className="card-body flex items-center">
                      <div className={assign.status === "Completed" ? "bg-white h-[100px] w-1/3  flex items-center justify-center text-green-700 font-bold rounded-full" : "bg-white h-[100px] w-1/3  flex items-center justify-center text-black font-bold rounded-full"}>
                        <span className="text-center font-bold">{assign.mark}/{assign.giveMark ? assign.giveMark :"00"}</span>
                      </div>
-                    <h2 className="card-title">{assign.assTitle}</h2>
+                    <h2 className="card-title text-white">{assign.assTitle}</h2>
                     
                     <p className={assign.status === 'Completed' ?"text-green-600 font-bold" : "text-black font-semibold"}>{assign.status}</p>
                     

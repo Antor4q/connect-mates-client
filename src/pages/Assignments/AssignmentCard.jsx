@@ -15,7 +15,7 @@ const AssignmentCard = ({assignment,setAssignments,assignments}) => {
     const {user} = useContext(ConnectAuth)
     const handleDelete = id => {
       if(userEmail === user.email){
-        // const procesed = confirm("Are you sure you want delete")
+        
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -50,7 +50,9 @@ const AssignmentCard = ({assignment,setAssignments,assignments}) => {
         <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{difficultyLevel}</p>
     </div>
 
-    <img className="object-cover w-[320px] h-48 mt-2" src={image} alt="NIKE AIR"/>
+    <div>
+    <img className="object-cover  w-[320px] h-48 mt-2 transition delay-100 duration-200 hover:scale-110" src={image} alt="NIKE AIR"/>
+    </div>
 
     <div className="flex items-center text-white justify-between px-4 py-2 bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9]">
         <h1 className="text-lg font-bold ">{marks} Mark</h1>

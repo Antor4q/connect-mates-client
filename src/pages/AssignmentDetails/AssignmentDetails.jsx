@@ -1,5 +1,5 @@
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { ConnectAuth } from "../../routes/AuthContext";
 
@@ -17,10 +17,24 @@ const AssignmentDetails = () => {
     const navigate = useNavigate()
     
 
+   
+    const [assigns,setAssigns] = useState([])
+    useEffect(()=>{
+        axiosSecure.get(`/attempted/${user?.email}`)
+        .then(result => {
+          setAssigns(result.data)
+          
+        })
+    },[user?.email,axiosSecure])
+   const remaining = assigns.filter(ass => ass.email === user.email)
+    
     const handleAttempted = e => {
         e.preventDefault()
         if(user.email === userEmail){
            return toast.error("You Don't have access to attempted on your assignment")
+        }
+        if(remaining){
+            return toast.error("You have already attempted on this assignment")
         }
         
         const form = e.target;
@@ -38,6 +52,7 @@ const AssignmentDetails = () => {
         .then(result => {
            if(result){
             toast.success("You have Successfully attempted this assignment")
+           
             setTimeout(()=>{
                 navigate("/assignments")
             },200)
@@ -84,16 +99,16 @@ const AssignmentDetails = () => {
                                     <div className="my-3">
                                         
 
-                                        <input type="text" name="file" placeholder="Enter Your File Link" className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" />
+                                        <input required type="text" name="file" placeholder="Enter Your File Link" className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" />
                                     </div>
                                     <div>
                                         
 
-                                        <textarea placeholder="Enter Your Note" name="note" className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-4 h-32 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"></textarea>
+                                        <textarea required placeholder="Enter Your Note" name="note" className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-4 h-32 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"></textarea>
                                         
                                        
                                     </div>
-                                    <input type="submit" className="px-8 mt-3 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" value="Submit" />
+                                    <input type="submit"  className="px-8 mt-3 cursor-pointer py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gradient-to-r from-[#0d434a] via-[#117c8a] to-[#18a6b9] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" value="Submit" />
                                     <Toaster/>
                                     </form>
                                 </div>

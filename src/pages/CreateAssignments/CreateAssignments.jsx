@@ -6,11 +6,13 @@ import { ConnectAuth } from "../../routes/AuthContext";
 // import axios from "axios";
 import useSecure from "../../hooks/useSecure";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const CreateAssignments = () => {
     const [level,setLevel] = useState("")
     const {user} = useContext(ConnectAuth)
     const axiosSecure = useSecure()
+    const navigate = useNavigate()
     const handleLevel = e => {
         setLevel(e.target.value)
     }
@@ -30,7 +32,11 @@ const CreateAssignments = () => {
         axiosSecure.post(`/createAssignment`,assignment)
         .then(result => {
            if(result){
+            form.reset()
             toast.success("Assignment successfully created")
+            setTimeout(()=>{
+                navigate("/assignments")
+            },600)
            }
         })
     }

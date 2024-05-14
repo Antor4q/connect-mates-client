@@ -37,8 +37,10 @@ const Features = () => {
            <div className="grid px-6 lg:px-0  grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8">
               {
                 assignments.slice(0,6).map(assign => <>
-                    <div className=" p-6 rounded-md shadow-md  bg-white dark:bg-gray-900">
-                    <img src={assign.image} alt="" className="object-cover object-center w-full rounded-md h-[150px] lg:h-64 bg-gray-500" />
+                    <div className=" transition duration-200 hover:scale-110 p-6 rounded-md shadow-md  bg-white dark:bg-gray-900">
+                    <div>
+                    <img src={assign.image} alt="" className="object-cover object-center  w-full rounded-md h-[150px] lg:h-64 bg-gray-500" />
+                    </div>
                     <div className="mt-6 mb-2">
                         <span className="block text-xs font-medium tracking-widest uppercase text-[#77B0AA]">{assign.difficultyLevel}</span>
                         <h2 className="text-xl font-semibold tracking-wide">{assign.title}</h2>
