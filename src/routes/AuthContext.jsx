@@ -48,14 +48,14 @@ const AuthContext = ({children}) => {
             setLoading(false)
             if(currentUser){
                 axios.post(`${import.meta.env.VITE_API_URL}/jwt`,signInEmail,{withCredentials: true})
-                .then(result => {
-                    console.log(result.data)
+                .then(() => {
+                   
                 })
             }
             else{
                 axios.post(`${import.meta.env.VITE_API_URL}/signOut`,signInEmail,{withCredentials: true})
-                .then(result => {
-                    console.log(result.data)
+                .then(() => {
+                    
                 })
             }
         })

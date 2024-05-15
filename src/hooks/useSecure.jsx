@@ -13,7 +13,7 @@ const useSecure = () => {
     secure.interceptors.response.use(res => {
         return res;
     }), err => {
-        console.log(err.response.status)
+       
         if(err.response.status === 401 || err.response.status === 403){
             logOut()
             .then(()=>{

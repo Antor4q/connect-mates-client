@@ -19,7 +19,7 @@ const SignUp = () => {
         const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, photo, email, password)
+       
         setError("")
         if(!/^(?=.*[a-z])(?=.*[A-Z])/.test(password)){
           return  setError("Password must have an Lowercase and Uppercase Letter")
@@ -50,8 +50,10 @@ const SignUp = () => {
     const handleGoogle =() => {
         google()
         .then((result)=>{
-            console.log(result.user)
+           
+           if(result){
             navigate("/")
+           }
         })
         .catch(()=>{})
     }
