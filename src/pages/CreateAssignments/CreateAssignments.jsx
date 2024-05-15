@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const CreateAssignments = () => {
     const [level,setLevel] = useState("")
-    const {user} = useContext(ConnectAuth)
+    const {user,setNotify,setCount,count} = useContext(ConnectAuth)
     const axiosSecure = useSecure()
     const navigate = useNavigate()
     const handleLevel = e => {
@@ -29,11 +29,14 @@ const CreateAssignments = () => {
         const assignment = {
             title, image, marks, dueDate, difficultyLevel, description, userEmail, userImage : user.photoURL, userName : user.displayName
         }
+        
         axiosSecure.post(`/createAssignment`,assignment)
         .then(result => {
            if(result){
             form.reset()
             toast.success("Assignment successfully created")
+            setNotify(true)
+            setCount(count + 1)
             setTimeout(()=>{
                 navigate("/assignments")
             },600)

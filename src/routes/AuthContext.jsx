@@ -8,6 +8,9 @@ export const ConnectAuth = createContext()
 const AuthContext = ({children}) => {
     const [user,setUser] = useState(null)
     const [loading,setLoading] = useState(true)
+    const [notify,setNotify] = useState(false)
+    const [count,setCount] = useState(0)
+    
     const googleProvider = new GoogleAuthProvider()
 
     const signUp = (email, password) => {
@@ -62,6 +65,10 @@ const AuthContext = ({children}) => {
     const userInfo = {
         user,
         loading,
+        notify,
+        count,
+        setCount,
+        setNotify,
         signUp,
         signIn,
         google,

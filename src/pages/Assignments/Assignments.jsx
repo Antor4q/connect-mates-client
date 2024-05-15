@@ -1,23 +1,24 @@
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import AssignmentCard from "./AssignmentCard";
 import { CirclesWithBar } from "react-loader-spinner";
+import useSecure from "../../hooks/useSecure";
 
 
 const Assignments = () => {
     const [assignments,setAssignments] = useState([])
     const [ass,setAss] = useState([...assignments])
-    
+    const axiosSecure = useSecure()
    const [loading,setLoading] = useState(true)
     useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_URL}/createAssignment`)
+        axiosSecure.get(`/createAssignment`)
         .then(result => {
            
             setAssignments(result.data)
             setAss(result.data)
             setLoading(false)
         })
-    },[])
+    },[axiosSecure])
     if(loading){
         return <span className="h-[800px] lg:max-w-[1320px] mx-auto flex justify-center items-center">
         <CirclesWithBar

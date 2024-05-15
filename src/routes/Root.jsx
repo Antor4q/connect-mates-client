@@ -1,16 +1,27 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../pages/Home/Navbar/Navbar";
 import Footer from "../pages/Home/Footer/Footer";
-import { useEffect, useState } from "react";
-import { IoCallOutline } from "react-icons/io5";
+import { useContext, useEffect, useState } from "react";
+import { IoCallOutline, IoNotifications } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
+import { ConnectAuth } from "./AuthContext";
+import useSecure from "../hooks/useSecure";
+import Notify from "./Notify";
 
 
 
 const Root = () => {
     const [theme,setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light")
-
+    const {count,setCount} = useContext(ConnectAuth)
+    
+    const axiosSecure = useSecure()
+    const [assigns,setAssigns] = useState([])
+    const [ass,setASs] = useState([...assigns])
+    const [loading,setLoading] = useState(true)
+    
+    
+    
     const handleToggle = e => {
         if(e.target.checked){
             setTheme("dark")
@@ -24,6 +35,31 @@ const Root = () => {
         document.querySelector("html").setAttribute("data-theme",themeLocal)
     },[theme])
 
+
+    
+   
+    const handleNotify = () => {
+        setCount(0)
+       const remaining = [...ass].sort((a,b) => b?._id.localeCompare(a?._id) )
+       
+       setAssigns(remaining)
+      
+      
+    }
+
+    
+    useEffect(()=>{
+        axiosSecure.get("/createAssignment")
+        .then(result => {
+            
+            setAssigns(result.data)
+            setASs(result.data)
+            setLoading(false)
+        })
+    },[axiosSecure])
+    if(loading){
+        return <span>Loading.....</span>
+    }
     return (
         <div >
             <div className="bg-[#003C43] lg:py-4 px-4 lg:px-0">
@@ -69,11 +105,33 @@ const Root = () => {
                         
                         </label>
                     </div>
+                    
+                    <div className="text-white dropdown dropdown-end text-xl font-semibold">
+                    <div tabIndex={0} role="button" aria-haspopup="true" aria-expanded="true" onClick={handleNotify} className="">
+                        <div className="indicator">
+                        <IoNotifications />
+                            <span className="badge text-white border-none badge-xs bg-red-500 indicator-item">{ count}</span>
+                        </div>
+                        </div>
+                        <div tabIndex={0} className="dropdown-content text-black py-10 flex flex-col bg-gray-300 z-50 menu p-2 shadow rounded-box w-80">
+                        <ul >
+                           <div className=" h-[200px]">
+                            { 
+                                assigns.slice(0,6).map(ass => <Notify key={ass._id} ass={ass} ind={ass.ind}></Notify>)
+                            }
+                           
+                           </div>
+                            
+                        </ul>
+                        </div>
+                        
+                    </div>
+                    
              </div>
              </div>
             
             </div>
-            <div className="sticky shadow-lg bg-white top-0 z-50">
+            <div className="sticky shadow-lg bg-white top-0 z-40">
             <Navbar></Navbar>
             </div>
            
