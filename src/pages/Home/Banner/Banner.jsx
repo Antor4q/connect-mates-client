@@ -11,7 +11,7 @@ import 'swiper/css';
 
 const Banner = () => {
     return (
-        <div>
+        <div >
              <Swiper
                className="relative lg:h-[750px] md:h-[350px]"
                loop={true}
@@ -29,7 +29,7 @@ const Banner = () => {
        
              >
                 <SwiperSlide>
-                 <div className="hero bg-fixed lg:h-[750px]" style={{backgroundImage: `url(${banner1})`}}>
+                 <div className="hero bg-fixed md:h-[500px] h-[350px]  lg:h-[750px]" style={{backgroundImage: `url(${banner1})`}}>
                   <div className="hero-overlay bg-opacity-60"></div>
                   <div className="px-6 lg:px-0 py-8 lg:py-0 text-neutral-content">
                     <div className="">
@@ -41,7 +41,7 @@ const Banner = () => {
                  </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                 <div className="hero bg-fixed lg:h-[750px]" style={{backgroundImage: `url(${banner2})`}}>
+                 <div className="hero bg-fixed md:h-[500px] h-[350px] lg:h-[750px]" style={{backgroundImage: `url(${banner2})`}}>
                   <div className="hero-overlay bg-opacity-60"></div>
                   <div className="px-6 lg:px-0 py-8 lg:py-0 text-neutral-content">
                     <div className="">
@@ -53,7 +53,7 @@ const Banner = () => {
                  </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                 <div className="hero bg-fixed lg:h-[750px]" style={{backgroundImage: `url(${banner3})`}}>
+                 <div className="hero bg-fixed md:h-[500px] h-[350px] lg:h-[750px]" style={{backgroundImage: `url(${banner3})`}}>
                   <div className="hero-overlay bg-opacity-60"></div>
                   <div className=" px-6 lg:px-0 py-8 lg:py-0 text-neutral-content">
                     <div className="">
@@ -65,6 +65,35 @@ const Banner = () => {
                  </div>
                 </SwiperSlide>
              </Swiper>
+             <div className="lg:max-w-[1320px]  mt-10 lg:mt-0 px-6 lg:px-0 lg:pl-10 mx-auto">
+              <div className="shadow-xl lg:-bottom-3 w-full lg:p-12 md:p-10 p-6 rounded-xl lg:w-2/3 mx-auto lg:absolute z-30  bg-gray-200">
+                  
+                  <div className="flex gap-10 pr-4 lg:pr-0 lg:flex-row md:flex-row flex-col items-center">
+                    <h2 className="lg:text-4xl text-xl font-bold ">Building Bridges,<br></br>  Celebrating Successes</h2>
+                  <div className="grid grid-cols-4   gap-14 lg:gap-20">
+                     <div >
+                        <h2 className="font-bold lg:text-3xl text-lg">+10000</h2>
+                        <p className="font-serif">Users</p>
+                        <p className="font-serif">Connected</p>
+                     </div>
+                     <div >
+                        <h2 className="font-bold lg:text-3xl text-lg">+900</h2>
+                        <p className="font-serif">Active</p>
+                        <p className="font-serif">Users</p>
+                     </div>
+                     <div >
+                        <h2 className="font-bold lg:text-3xl text-lg">+2000</h2>
+                        <p className="font-serif">Positive </p>
+                        <p className="font-serif">Reviews</p>
+                     </div>
+                     <div >
+                        <h2 className="font-bold lg:text-3xl text-lg">+30</h2>
+                        <p className="font-serif">Teachers</p>
+                     </div>
+                  </div>
+                  </div>
+                </div>
+             </div>
         </div>
     );
 };

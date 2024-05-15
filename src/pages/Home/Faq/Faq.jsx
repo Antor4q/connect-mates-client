@@ -2,12 +2,12 @@ import faq from "../../../assets/students-1807505_640.jpg"
 
 const Faq = () => {
     return (
-        <div className="lg:mb-10 lg:max-w-[1320px] mx-auto">
-            <h2 className="text-3xl font-bold mb-7 text-center">Faq</h2>
+        <div className="lg:mb-10  lg:max-w-[1320px] mx-auto">
+            <h2 className="text-3xl font-bold mb-7 pb-5 text-center">Faq</h2>
             <div className="grid grid-cols-1 px-6 lg:px-0 lg:grid-cols-2 gap-5">
             <div className="flex relative items-center lg:flex-row gap-5 lg:gap-0 flex-col justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
                     <img src={faq} alt="" className="object-contain  h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128" />
-                    <div className="flex bg-gray-300 opacity-70 mb-5 lg:mb-0 lg:absolute  top-[30%] flex-col  p-6  rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
+                    <div className="flex bg-gray-300 opacity-70 mb-5  lg:mb-0 lg:absolute  top-[30%] flex-col  p-6  rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
                             <h1 className=" leading-none z-10  text-xl lg:text-2xl text-black font-bold">ConnectMates
                             </h1>
                            <p className="text-black z-10 font-medium text-xl">Create, Share, and Track Assignments with ConnectMates</p>
@@ -15,7 +15,7 @@ const Faq = () => {
                            
                         </div>
                 </div>
-                <div className="col-span-1  mb-10">
+                <div className="col-span-1 mt-6 lg:mt-0  mb-10">
                 <div className="collapse collapse-plus ">
                     <input type="radio" name="my-accordion-3" defaultChecked /> 
                     <div className="collapse-title text-xl font-medium">
@@ -54,6 +54,7 @@ const Faq = () => {
                     </div>
                 </div>
             </div>
+             
         </div>
     );
 };

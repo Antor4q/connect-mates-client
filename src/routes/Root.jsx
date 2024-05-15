@@ -8,6 +8,7 @@ import { IoIosSearch } from "react-icons/io";
 import { ConnectAuth } from "./AuthContext";
 import useSecure from "../hooks/useSecure";
 import Notify from "./Notify";
+import { CirclesWithBar } from "react-loader-spinner";
 
 
 
@@ -58,7 +59,19 @@ const Root = () => {
         })
     },[axiosSecure])
     if(loading){
-        return <span>Loading.....</span>
+        return <span className="h-[800px] lg:max-w-[1320px] mx-auto flex justify-center items-center">
+        <CirclesWithBar
+        height="100"
+        width="100"
+        color="#117c8a"
+        outerCircleColor="#117c8a"
+        innerCircleColor="#117c8a"
+        barColor="#117c8a"
+        ariaLabel="circles-with-bar-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        /></span>
     }
     return (
         <div >

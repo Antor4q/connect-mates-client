@@ -5,7 +5,7 @@ import { RiCommunityFill } from "react-icons/ri";
 
 const Feature = () => {
     return (
-        <div className="lg:max-w-[1320px] lg:my-10 mx-auto">
+        <div className="lg:max-w-[1320px] lg:mt-16 lg:mb-10 mx-auto">
            <section className="bg-white dark:bg-gray-900">
     <div className="container px-6 py-10 mx-auto">
         <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">explore our <br></br> Feature`s</h1>
