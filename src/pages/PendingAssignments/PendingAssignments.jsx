@@ -3,10 +3,12 @@ import {  useEffect, useState } from "react";
 import PendingModal from "./PendingModal";
 
 import useSecure from "../../hooks/useSecure";
+import { CirclesWithBar } from "react-loader-spinner";
 
 
 const PendingAssignments = () => {
     const [attemptedAssign,setAttemptedAssign] = useState([])
+    const [loading,setLoading] = useState(true)
   
     const axiosSecure = useSecure()
    
@@ -15,9 +17,24 @@ const PendingAssignments = () => {
         .then(result => {
             
             setAttemptedAssign(result.data)
-           
+           setLoading(false)
         })
     },[axiosSecure])
+    if(loading){
+        return <span className="h-[800px] lg:max-w-[1320px] mx-auto flex justify-center items-center">
+        <CirclesWithBar
+        height="100"
+        width="100"
+        color="#117c8a"
+        outerCircleColor="#117c8a"
+        innerCircleColor="#117c8a"
+        barColor="#117c8a"
+        ariaLabel="circles-with-bar-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        /></span>
+    }
    
    
     return (

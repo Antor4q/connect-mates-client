@@ -2,20 +2,37 @@ import { useContext, useEffect, useState } from "react";
 import { ConnectAuth } from "../../routes/AuthContext";
 
 import useSecure from "../../hooks/useSecure";
+import { CirclesWithBar } from "react-loader-spinner";
 
 
 const AttempedAssignments = () => {
     const {user} = useContext(ConnectAuth)
     const [assigns,setAssigns] = useState([])
+    const [loading,setLoading] = useState(true)
  
    const axiosSecure = useSecure()
     useEffect(()=>{
         axiosSecure.get(`/attempted/${user?.email}`)
         .then(result => {
           setAssigns(result.data)
-          
+          setLoading(false)
         })
     },[user?.email,axiosSecure])
+    if(loading){
+        return <span className="h-[800px] lg:max-w-[1320px] mx-auto flex justify-center items-center">
+        <CirclesWithBar
+        height="100"
+        width="100"
+        color="#117c8a"
+        outerCircleColor="#117c8a"
+        innerCircleColor="#117c8a"
+        barColor="#117c8a"
+        ariaLabel="circles-with-bar-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        /></span>
+    }
  
     return (
         <div className="lg:h-screen px-6 lg:px-0 lg:max-w-[1440px] mx-auto">
