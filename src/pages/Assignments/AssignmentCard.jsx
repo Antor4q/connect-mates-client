@@ -8,7 +8,9 @@ import { ConnectAuth } from "../../routes/AuthContext";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
-// import toast from "react-hot-toast";
+import { motion } from "framer-motion"
+import Animate from "../Animate/Animate";
+
 
 const AssignmentCard = ({assignment,setAssignments,assignments}) => {
     const {title,marks,difficultyLevel,image,_id,userEmail} = assignment;
@@ -44,7 +46,12 @@ const AssignmentCard = ({assignment,setAssignments,assignments}) => {
       }
     }
     return (
-        <div className="max-w-xs mx-auto mb-5 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <motion.div 
+        variants={Animate("up",0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{once : false, amount : 0.7}}
+        className="max-w-xs mx-auto mb-5 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
     <div className="px-4 py-2 h-[100px]">
         <h1 className="text-xl font-bold text-gray-800 uppercase dark:text-white">{title}</h1>
         <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{difficultyLevel}</p>
@@ -69,7 +76,7 @@ const AssignmentCard = ({assignment,setAssignments,assignments}) => {
             </div>
         </div>
     </div>
-</div>
+</motion.div>
     );
 };
 

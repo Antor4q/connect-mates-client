@@ -19,7 +19,7 @@ const AttempedAssignments = () => {
  
     return (
         <div className="lg:h-screen px-6 lg:px-0 lg:max-w-[1440px] mx-auto">
-            <h2 className="lg:text-3xl text-xl text-center my-10">The Attempted Assignment`s</h2>
+            <h2 className="lg:text-3xl font-bold text-xl text-center my-10"> Attempted Assignment`s</h2>
             <div className="grid mb-10 lg:mb-0 grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-3  ">
             {
                 assigns.map(assign => <>

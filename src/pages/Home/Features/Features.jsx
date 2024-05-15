@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { CirclesWithBar } from "react-loader-spinner";
 import { Link } from "react-router-dom";
-
+import { motion } from "framer-motion"
+import Animate from "../../Animate/Animate";
 
 const Features = () => {
     const [assignments,setAssignments] = useState([])
@@ -37,7 +38,12 @@ const Features = () => {
            <div className="grid px-6 lg:px-0  grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8">
               {
                 assignments.slice(0,6).map(assign => <>
-                    <div className=" transition duration-200 hover:scale-110 p-6 rounded-md shadow-md  bg-white dark:bg-gray-900">
+                    <motion.div
+                    variants={Animate("left",0.1)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{once : false, amount : 0.7}}
+                     className=" transition duration-200 hover:scale-110 p-6 rounded-md shadow-md  bg-white dark:bg-gray-900">
                     <div>
                     <img src={assign.image} alt="" className="object-cover object-center  w-full rounded-md h-[150px] lg:h-64 bg-gray-500" />
                     </div>
@@ -49,7 +55,7 @@ const Features = () => {
                     <div className="text-end">
                     <Link to={`/assignmentDetails/${assign._id}`} className="text-white mt-2 px-4 py-1  rounded-xl bg-[#135D66]">View Details</Link>
                     </div>
-                </div>
+                </motion.div>
                 
                 </>)
               }
