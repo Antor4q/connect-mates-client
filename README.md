@@ -2,6 +2,8 @@
 
 Live link: https://connect-mates.web.app
 
+Server site link: https://github.com/Antor4q/connect-mates-server
+
 Hey let's introduce my lates't project ConnectMates. It is a web applicaion for  online group study with
  friends.
 
