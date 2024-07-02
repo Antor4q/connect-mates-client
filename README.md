@@ -45,4 +45,21 @@ Hey let's introduce my lates't project ConnectMates. It is a web applicaion for 
       7. Axios
       
       8. Rect sweetalert2
+
+ Getting Started -
+
+ 1. Clone the repository:
+    https://github.com/Antor4q/connect-mates-client.git
+    cd connect-mates-client
+    
+ 2. Install dependencies:
+    npm install
+
+ 3. Set up environment variables:
+    Create a .env file in the root directory.
+    add firebse config keys and server url
+
+ 4. Run the application:
+    npm run dev
+    
     
